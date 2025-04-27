@@ -45,3 +45,24 @@ def mutate(board, mutation_rate):
         board[i] = random.randint(0, N - 1)  # تغییر موقعیت وزیر
     return board
 
+    # اجرای الگوریتم
+def genetic_algorithm(population_size, mutation_rate, generations):
+    population = create_population(population_size)  # ایجاد جمعیت اولیه
+
+    for generation in range(generations):
+        population = sorted(population, key=fitness, reverse=True)  # مرتب‌سازی بر اساس تناسب نزولی
+        if fitness(population[0]) == 28:  # اگر بهترین راه‌حل پیدا شد
+            return population[0]
+        
+        new_population = population[:2]  # حفظ بهترین‌ها
+        while len(new_population) < population_size:
+            parent1 = selection(population)  # انتخاب والد اول
+            parent2 = selection(population)  # انتخاب والد دوم
+            child = crossover(parent1, parent2)  # ترکیب والدین
+            new_population.append(mutate(child, mutation_rate))  # جهش فرزند
+        
+        population = new_population  # به‌روزرسانی جمعیت
+
+    return population[0]  # بازگشت بهترین راه‌حل در انتها
+
+
