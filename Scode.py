@@ -66,3 +66,8 @@ def genetic_algorithm(population_size, mutation_rate, generations):
     return population[0]  # بازگشت بهترین راه‌حل در انتها
 
 
+# پارامترها و اجرای الگوریتم
+if __name__ == "__main__":
+    best_solution = genetic_algorithm(population_size=100, mutation_rate=0.05, generations=1000)
+    print("Best solution:", best_solution)
+
