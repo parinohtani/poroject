@@ -18,6 +18,7 @@ def fitness(board):
                 conflicts += 1
     return 28 - conflicts  # حداکثر تعداد تعارضات 28 است
 
+
 # انتخاب (انتخاب چرخ رولت)
 def selection(population):
     weights = [fitness(board) for board in population]  # محاسبه تناسب هر فرد
